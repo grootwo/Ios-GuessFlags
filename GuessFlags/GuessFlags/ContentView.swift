@@ -9,22 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            LinearGradient(stops: [
-                Gradient.Stop(color: .white, location: 0.2),
-                Gradient.Stop(color: .blue, location: 0.4)
-            ], startPoint: .top, endPoint: .bottom)
-            LinearGradient(stops: [
-                .init(color: .red, location: 0.2),
-                .init(color: .cyan, location: 0.8)
-            ], startPoint: .leading, endPoint: .trailing)
-            RadialGradient(colors: [.brown, .orange, .mint], center: .center, startRadius: 20, endRadius: 150)
-            AngularGradient(colors: [.red, .yellow, .blue, .red], center: .center)
-            Text("These are gradient")
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
-                .foregroundStyle(.white)
-                .background(.green.gradient)
+        VStack(spacing: 20) {
+            Button("default") { }
+                .buttonStyle(.automatic)
+            Button("plain") { }
+                .buttonStyle(.plain)
+            Button("bordered") { }
+                .buttonStyle(.bordered)
+                .tint(.purple)
+            Button("borderedProminent") { }
+                .buttonStyle(.borderedProminent)
+            Button("borderless") { }
+                .buttonStyle(.borderless)
+            Button(action: {}, label: {
+                Text("Custom Button")
+                    .padding(20)
+                    .foregroundColor(.white)
+                    .background(.orange)
+            })
+            Button("Save", systemImage: "square.and.arrow.down") {}
+                .padding(20)
+                .foregroundColor(.white)
+                .background(.orange)
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Label("record", systemImage: "mic.circle.fill")
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .padding(20)
+                    .foregroundColor(.white)
+                    .background(.orange)
+            })
         }
+        .tint(.green)
     }
 }
 
