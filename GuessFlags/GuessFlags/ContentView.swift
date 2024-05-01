@@ -23,7 +23,11 @@ struct ContentView: View {
                         .foregroundStyle(.white)
                 }
                 ForEach(0..<3) { number in
-                    Image(countries[number].lowercased())
+                    Button {
+                        
+                    } label: {
+                        Image(countries[number].lowercased())
+                    }
                 }
             }
         }
