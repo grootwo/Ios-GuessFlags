@@ -14,20 +14,24 @@ struct ContentView: View {
     @State private var showingScore = false
     var body: some View {
         ZStack {
-            Color.clear
-                .background(.green.gradient)
+            LinearGradient(colors: [.cyan, .indigo], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             VStack(spacing: 30) {
                 VStack {
                     Text("Tap the flag of")
                         .foregroundStyle(.white)
+                        .font(.subheadline.weight(.heavy))
                     Text(countries[selectedCountry])
                         .foregroundStyle(.white)
+                        .font(.largeTitle.weight(.bold))
                 }
                 ForEach(0..<3) { number in
                     Button {
                         guessFlag(selectedAnswer: number)
                     } label: {
                         Image(countries[number])
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                     }
                 }
             }
