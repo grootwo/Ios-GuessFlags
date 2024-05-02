@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var result = ""
     @State private var showingScore = false
     @State private var score = 0
+    @State private var questionStatus = 1
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -52,13 +53,20 @@ struct ContentView: View {
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
                 Spacer()
+                Text("\(questionStatus)/8 questions")
+                    .font(.title.bold())
+                    .foregroundStyle(.white)
             }
             .padding()
         }
         .alert(result, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
-            Text("Your score is \(score)")
+            if questionStatus == 8 {
+                Text("Your totla score is \(score)")
+            } else {
+                Text("Your score is \(score)")
+            }
         }
     }
     
@@ -75,6 +83,11 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         selectedCountry = Int.random(in: 0...2)
+        questionStatus += 1
+        if questionStatus == 9 {
+            questionStatus = 1
+            score = 0
+        }
     }
 }
 
