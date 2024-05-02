@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var selectedCountry = Int.random(in: 0...2)
     @State private var result = ""
     @State private var showingScore = false
+    @State private var score = 0
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -47,7 +48,7 @@ struct ContentView: View {
                 .background(.regularMaterial)
                 .clipShape(.rect(cornerRadius: 20))
                 Spacer()
-                Text("Score: ...")
+                Text("Score: \(score)")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
                 Spacer()
@@ -57,15 +58,17 @@ struct ContentView: View {
         .alert(result, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
-            Text("Your score is ...")
+            Text("Your score is \(score)")
         }
     }
     
     func guessFlag(selectedAnswer: Int) {
         if selectedAnswer == selectedCountry {
             result = "Correct"
+            score += 10
         } else {
             result = "Wrong"
+            score -= 10
         }
         showingScore = true
     }
