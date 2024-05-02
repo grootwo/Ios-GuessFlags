@@ -64,10 +64,10 @@ struct ContentView: View {
     
     func guessFlag(selectedAnswer: Int) {
         if selectedAnswer == selectedCountry {
-            result = "Correct"
+            result = "Correct! It's the flag of \(countries[selectedAnswer])"
             score += 10
         } else {
-            result = "Wrong"
+            result = "Wrong! That's the flag of \(countries[selectedAnswer])"
             score -= 10
         }
         showingScore = true
