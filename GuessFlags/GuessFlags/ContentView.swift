@@ -63,7 +63,7 @@ struct ContentView: View {
             Button("Continue", action: askQuestion)
         } message: {
             if questionStatus == 8 {
-                Text("Your totla score is \(score)")
+                Text("Your total score is \(score)")
             } else {
                 Text("Your score is \(score)")
             }
