@@ -94,7 +94,7 @@ struct FlagImage: View {
     var body: some View {            
         Image(flagName)
             .clipShape(RoundedRectangle(cornerRadius: 20))
-            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            .shadow(radius: 10)
     }
 }
 
