@@ -38,9 +38,7 @@ struct ContentView: View {
                         Button {
                             guessFlag(selectedAnswer: number)
                         } label: {
-                            Image(countries[number])
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
-                                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                            FlagImage(flagName: countries[number])
                         }
                     }
                 }
@@ -88,6 +86,15 @@ struct ContentView: View {
             questionStatus = 1
             score = 0
         }
+    }
+}
+
+struct FlagImage: View {
+    let flagName: String
+    var body: some View {            
+        Image(flagName)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     }
 }
 
