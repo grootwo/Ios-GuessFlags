@@ -15,6 +15,7 @@ struct ContentView: View {
     @State var pickedSituation = Int.random(in: 0...1)
     @State var answer = ""
     @State var isShowingAlert = false
+    @State var score = 0
     var body: some View {
         VStack(spacing: 30) {
             Text(choicesEmoji[pickedChoice])
@@ -26,7 +27,6 @@ struct ContentView: View {
             HStack {
                 ForEach(0..<3) { choice in
                     Button(action: {
-                        print("\(choice) is clicked")
                         guessAnswer(selectedChoice: choice)
                         isShowingAlert = true
                     }, label: {
@@ -40,7 +40,7 @@ struct ContentView: View {
         .alert(answer, isPresented: $isShowingAlert) {
             Button("Continue", action: setNewQuestion)
         } message: {
-            Text("Your score is ...")
+            Text("Now your score is \(score)!")
         }
     }
     
@@ -48,14 +48,18 @@ struct ContentView: View {
         if pickedSituation == 0 {
             if pickedChoice == 0 && selectedChoice == 2 || pickedChoice == 1 && selectedChoice == 0 || pickedChoice == 2 && selectedChoice == 1 {
                 answer = "Correct"
+                score += 10
             } else {
                 answer = "Wrong"
+                score -= 10
             }
         } else {
             if pickedChoice == 0 && selectedChoice == 1 || pickedChoice == 1 && selectedChoice == 2 || pickedChoice == 2 && selectedChoice == 0 {
                 answer = "Correct"
+                score += 10
             } else {
                 answer = "Wrong"
+                score -= 10
             }
         }
     }
