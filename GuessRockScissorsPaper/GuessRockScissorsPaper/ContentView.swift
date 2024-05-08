@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var pickedChoice = Int.random(in: 0...2)
     @State var pickedSituation = Int.random(in: 0...1)
     @State var answer = ""
+    @State var isShowingAlert = false
     var body: some View {
         VStack(spacing: 30) {
             Text(choicesEmoji[pickedChoice])
@@ -25,6 +26,8 @@ struct ContentView: View {
                 ForEach(0..<3) { choice in
                     Button(action: {
                         print("\(choice) is clicked")
+                        guessAnswer(selectedChoice: choice)
+                        isShowingAlert = true
                     }, label: {
                         Text(choicesEmoji[choice])
                             .font(.system(size: 100))
@@ -32,6 +35,8 @@ struct ContentView: View {
                 }
             }
         }
+        .padding(5)
+        .alert(answer, isPresented: $isShowingAlert, actions: {})
     }
     
     func guessAnswer(selectedChoice: Int) {
