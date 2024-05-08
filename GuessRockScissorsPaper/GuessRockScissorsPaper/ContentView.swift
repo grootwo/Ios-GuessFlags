@@ -22,6 +22,7 @@ struct ContentView: View {
             Text("What is your choice to \(situations[pickedSituation])?")
                 .font(.title)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.center)
             HStack {
                 ForEach(0..<3) { choice in
                     Button(action: {
@@ -35,8 +36,12 @@ struct ContentView: View {
                 }
             }
         }
-        .padding(5)
-        .alert(answer, isPresented: $isShowingAlert, actions: {})
+        .padding()
+        .alert(answer, isPresented: $isShowingAlert) {
+            Button("Continue", action: setNewQuestion)
+        } message: {
+            Text("Your score is ...")
+        }
     }
     
     func guessAnswer(selectedChoice: Int) {
@@ -53,6 +58,11 @@ struct ContentView: View {
                 answer = "Wrong"
             }
         }
+    }
+    
+    func setNewQuestion() {
+        pickedChoice = Int.random(in: 0...2)
+        pickedSituation = Int.random(in: 0...1)
     }
 }
 
