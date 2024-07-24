@@ -14,6 +14,19 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var score = 0
     @State private var questionStatus = 1
+    let labels = [
+        "Estonia": "가로로 세 줄인 깃발. 위에서부터 파랑, 검정, 흰색.",
+            "France": "세로로 세 줄인 깃발. 왼쪽부터 파랑, 하양, 빨강색.",
+            "Germany": "가로로 세 줄인 깃발. 위에서부터 검정, 빨강, 노랑색.",
+            "Ireland": "세로로 세 줄일 깃발. 왼쪽부터 초록, 흰, 주황색.",
+            "Italy": "세로로 세 줄인 깃발. 왼쪽부터 초록, 흰, 빨강색.",
+            "Nigeria": "세로로 세 줄인 깃발. 왼쪽부터 초록, 흰, 초록색.",
+            "Poland": "가로로 두 줄인 깃발. 위에서부터 흰, 빨강색.",
+            "Spain": "가로로 세 줄인 깃발. 위에서부터 얇은 빨강 줄 사이, 두꺼운 노랑과 국장.",
+            "UK": "파랑색 배경에 흰색과 빨강색 십자가가 겹쳐진 깃발.",
+            "Ukraine": "가로로 두 줄인 깃발. 위에서부터 파랑, 노랑색.",
+            "US": "빨강색과 흰색의 줄무니가 있고 왼쪽 위는 파랑색 배경에 흰색 별이 있는 깃발."
+    ]
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -40,6 +53,7 @@ struct ContentView: View {
                         } label: {
                             FlagImage(flagName: countries[number])
                         }
+                        .accessibilityLabel(labels[countries[number], default: "Unkown flag"])
                     }
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
